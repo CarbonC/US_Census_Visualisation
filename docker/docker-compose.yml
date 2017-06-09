@@ -1,0 +1,21 @@
+version: '3'
+services:
+    backend:
+        image: node:8
+        ports:
+            - "3001:3001"
+        volumes:
+            - ../backend:/usr/src/app
+            - ../datas:/usr/src/datas
+        working_dir: /usr/src/app
+        command: npm start
+        links:
+            - "frontend"
+    frontend:
+        build: .
+        ports:
+          - "3000:3000"
+        volumes:
+          - ../frontend:/usr/src/app
+        working_dir: /usr/src/app
+        command: npm start
