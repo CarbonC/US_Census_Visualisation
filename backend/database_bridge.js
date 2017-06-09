@@ -1,29 +1,31 @@
 /* Import SQLite3 */
 const sqlite3 = require("sqlite3").verbose();
+
+/* Create the database. The database remains always open */
 const db = new sqlite3.Database("../datas/us-census.db");
 
 /* Retrieve Rows from Database */
-const retrieve_rows = () => {
+const retrieve_rows = new Promise((resolve, reject) => {
     let res = [];
-    db.serialize(function () {
-        db.each("PRAGMA table_info(census_learn_sql)", function (err, row) {
-            res.append(row.name);
+    db.serialize(() => {
+        db.each("PRAGMA table_info(census_learn_sql)", (err, row) => {
+            res.push(row.name);
+        }, () => {
+            resolve(res)
         });
     });
-    db.close();
-    return res;
-};
+});
 
-/* Retrieve Rows from Database */
-const retrieve_values = (variable) => {
+/* Retrieve values from Database */
+const retrieve_values = (variable) => new Promise((resolve, reject) => {
     let res = [];
-    db.serialize(function () {
-        db.each(`SELECT ${variable} FROM census_learn_sql GROUP BY ${variable} LIMIT 10`, function(err, row) {
-         res.append(row);
-         });
+    db.serialize(() => {
+        db.each(`SELECT ${variable} FROM census_learn_sql GROUP BY ${variable} LIMIT 10`, (err, row) => {
+            res.push(row);
+        }, () => {
+            resolve(res)
+        });
     });
-    db.close();
-    return res;
-};
+});
 
 module.exports = {retrieve_rows, retrieve_values};
