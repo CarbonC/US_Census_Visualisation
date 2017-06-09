@@ -1,14 +1,17 @@
 /* Import Koa */
 const Koa = require("koa");
 const app = new Koa();
+const router = require("koa-router")();
 
-/* Import SQLite3 */
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database(":memory:");
+/* Import routes */
+const routes = require("./routes");
+
 
 /* Create Koa Application */
-app.use((ctx) => {
-    ctx.body = "Hello World";
-});
+routes(router);
+
+app.use(router.routes());
+app.use(router.allowedMethods());
+
 
 app.listen(3000);
