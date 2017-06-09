@@ -7,7 +7,7 @@ const router = require("koa-router")();
 const routes = require("./routes");
 
 
-/* Create Koa Application */
+/* Create Koa Routes */
 routes(router);
 
 app.use(router.routes());
