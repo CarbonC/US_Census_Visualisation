@@ -4,6 +4,7 @@
 /datas
 # dependencies
 /frontend/node_modules
+/backend/node_modules
 
 # testing
 /frontend/coverage
