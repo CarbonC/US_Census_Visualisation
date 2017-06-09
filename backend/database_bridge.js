@@ -20,7 +20,7 @@ const retrieve_rows = new Promise((resolve, reject) => {
 const retrieve_values = (variable) => new Promise((resolve, reject) => {
     let res = [];
     db.serialize(() => {
-        db.each(`SELECT ${variable} FROM census_learn_sql GROUP BY ${variable} LIMIT 10`, (err, row) => {
+        db.each(`SELECT ${variable}, AVG(age), count(*) FROM census_learn_sql GROUP BY ${variable} LIMIT 10`, (err, row) => {
             res.push(row);
         }, () => {
             resolve(res)

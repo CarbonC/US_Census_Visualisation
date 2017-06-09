@@ -4,7 +4,7 @@ const {retrieve_rows, retrieve_values} = require("./database_bridge");
 const routes = (router) => {
 
     router.get('/', function (ctx, next) {
-        ctx.body = "Yolo";
+        ctx.body = "Hello! Welcome to the API!";
     });
 
     router.get("/variables", function (ctx, next) {
@@ -15,7 +15,8 @@ const routes = (router) => {
     });
 
     router.get("/values/:variable", function (ctx, next) {
-        return retrieve_values(ctx.params.variable).then(
+        // @Todo: change that dirty fix
+        return retrieve_values('"'+ ctx.params.variable +'"').then(
             function (res) {
                 ctx.body = res;
             });
