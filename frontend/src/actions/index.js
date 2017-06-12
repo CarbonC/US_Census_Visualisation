@@ -18,7 +18,8 @@ const fetchValues = (variable) => {
         })
         .then((res) => ({
             type: "FETCHVALUES",
-            values: res
+            values: res.res,
+            rowsNumber: res.number,
         }));
 };
 

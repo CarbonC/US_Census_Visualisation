@@ -11,7 +11,11 @@ const Row = styled.div`
 	padding: 20px;
 `;
 
-const VariableField = styled(AutoComplete)`
+const VariableField = styled.div`
+	padding-left: 20px;
+`;
+
+const Comment = styled.p`
 	padding-left: 20px;
 `;
 
@@ -45,12 +49,17 @@ class App extends Component {
                     <p>
                         Variable:
                     </p>
-                    <VariableField
-                        hintText="Variable name"
-                        dataSource={this.props.datas.variables}
-                        onNewRequest={this.handleUpdateInput}
-                    />
-
+                    <VariableField>
+                        <AutoComplete
+                            fullWidth={true}
+                            hintText="Variable name"
+                            dataSource={this.props.datas.variables}
+                            onNewRequest={this.handleUpdateInput}
+                        />
+                    </VariableField>
+                    <Comment>
+                        {this.props.datas.rowsNumber > 100 ? `Non displayed rows: ${this.props.datas.rowsNumber - 100}` : null}
+                    </Comment>
                 </Row>
                 <div>
                     <Table>

@@ -5,7 +5,8 @@
 const initialState = {
     selected: "",
     values: [],
-    variables: []
+    variables: [],
+    rowsNumber: 0,
 };
 
 export default (state = initialState, action) => {
@@ -15,7 +16,7 @@ export default (state = initialState, action) => {
         case 'CHANGEVARIABLE':
             return {...state, selected: action.selected};
         case 'FETCHVALUES':
-            return {...state, values: action.values};
+            return {...state, values: action.values, rowsNumber: action.rowsNumber};
         default:
             return state
     }
