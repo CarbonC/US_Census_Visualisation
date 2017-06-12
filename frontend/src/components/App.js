@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import AutoComplete from "material-ui/AutoComplete";
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
 
 class App extends Component {
 
@@ -10,14 +12,48 @@ class App extends Component {
         changeVariables: PropTypes.func.isRequired,
     };
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.loadVariables();
-    }
+    };
+
+    handleUpdateInput = (value) => {
+        this.props.changeVariables(value);
+        this.props.loadValues();
+    };
+
     render() {
-        const { datas } = this.props;
         return (
             <div>
-                Hello World
+                <div>
+                    <AutoComplete
+                        hintText="Type anything"
+                        dataSource={this.props.datas.variables}
+                        onNewRequest={this.handleUpdateInput}
+                    />
+
+                </div>
+                <div>
+                <Table>
+                    <TableHeader displaySelectAll={false}>
+                        <TableRow>
+                            <TableHeaderColumn>Value</TableHeaderColumn>
+                            <TableHeaderColumn>Count</TableHeaderColumn>
+                            <TableHeaderColumn>Average Age</TableHeaderColumn>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody displayRowCheckbox={false}>
+                        {this.props.datas.values.map((res) => {
+                            return (
+                                <TableRow key={res[this.props.datas.selected]}>
+                                    <TableRowColumn>{res[this.props.datas.selected]}</TableRowColumn>
+                                    <TableRowColumn>{res.count}</TableRowColumn>
+                                    <TableRowColumn>{res.age}</TableRowColumn>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                </Table>
+                </div>
             </div>
         )
     }
