@@ -17,6 +17,8 @@ values)
 
 ## Installation
 
+Download and place the DB in a datas folder in the root directory of the project.
+
 1) With docker-compose
 
 If docker compose is installed on your machine, simply run:
