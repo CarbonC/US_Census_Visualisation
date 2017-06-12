@@ -1,7 +1,20 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import AppBar from "material-ui/AppBar";
 import AutoComplete from "material-ui/AutoComplete";
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
+import styled from "styled-components";
+
+
+const Row = styled.div`
+	display: inline-flex;
+	padding: 20px;
+`;
+
+const VariableField = styled(AutoComplete)`
+	padding-left: 20px;
+`;
+
 
 class App extends Component {
 
@@ -24,35 +37,42 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <AutoComplete
-                        hintText="Type anything"
+                <AppBar
+                    iconElementLeft={<div/>}
+                    title="US Census Visualization"
+                />
+                <Row>
+                    <p>
+                        Variable:
+                    </p>
+                    <VariableField
+                        hintText="Variable name"
                         dataSource={this.props.datas.variables}
                         onNewRequest={this.handleUpdateInput}
                     />
 
-                </div>
+                </Row>
                 <div>
-                <Table>
-                    <TableHeader displaySelectAll={false}>
-                        <TableRow>
-                            <TableHeaderColumn>Value</TableHeaderColumn>
-                            <TableHeaderColumn>Count</TableHeaderColumn>
-                            <TableHeaderColumn>Average Age</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-                        {this.props.datas.values.map((res) => {
-                            return (
-                                <TableRow key={res[this.props.datas.selected]}>
-                                    <TableRowColumn>{res[this.props.datas.selected]}</TableRowColumn>
-                                    <TableRowColumn>{res.count}</TableRowColumn>
-                                    <TableRowColumn>{res.age}</TableRowColumn>
-                                </TableRow>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
+                    <Table>
+                        <TableHeader displaySelectAll={false}>
+                            <TableRow>
+                                <TableHeaderColumn>Value</TableHeaderColumn>
+                                <TableHeaderColumn>Count</TableHeaderColumn>
+                                <TableHeaderColumn>Average Age</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
+                            {this.props.datas.values.map((res) => {
+                                return (
+                                    <TableRow key={res[this.props.datas.selected]}>
+                                        <TableRowColumn>{res[this.props.datas.selected]}</TableRowColumn>
+                                        <TableRowColumn>{res.count}</TableRowColumn>
+                                        <TableRowColumn>{res.age}</TableRowColumn>
+                                    </TableRow>
+                                )
+                            })}
+                        </TableBody>
+                    </Table>
                 </div>
             </div>
         )
