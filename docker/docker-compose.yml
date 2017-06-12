@@ -8,14 +8,14 @@ services:
             - ../backend:/usr/src/app
             - ../datas:/usr/src/datas
         working_dir: /usr/src/app
-        command: npm start
+        command: bash -c "npm i && npm start"
         links:
             - "frontend"
     frontend:
-        build: .
+        build: ../frontend
         ports:
-          - "3000:3000"
+          - "5000:5000"
         volumes:
           - ../frontend:/usr/src/app
         working_dir: /usr/src/app
-        command: npm start
+        command: bash -c "npm i && npm run build && serve -s build"

@@ -15,5 +15,34 @@ Extras:
 values)
 - extensibility: allow a simple way to change database and variables
 
-Select tech stack that are adapted for exercise (backend and frontend).
-Share code on GitHub or Bitbucket.
+## Installation
+
+1) With docker-compose
+
+If docker compose is installed on your machine, simply run:
+```
+git clone https://github.com/CarbonC/US_Census_Visualisation.git
+cd US_Census_Visualisation/docker
+docker-compose up
+```
+And go see the site on localhost:5000!
+
+NB: the docker-compose is aimed to provide the simplest possible install, at the cost of performance.
+It might take 5 minutes for dockers to start.
+
+
+
+2) Manually
+
+This assume you have node and npm installed with latest versions
+```
+git clone https://github.com/CarbonC/US_Census_Visualisation.git`
+cd US_Census_Visualisation/backend
+npm i
+npm start
+cd ../frontend
+npm i
+npm run build
+serve -s build
+```
+And go see the site on localhost:5000!
