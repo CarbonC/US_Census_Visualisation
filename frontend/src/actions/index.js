@@ -32,7 +32,7 @@ export const loadVariables = () => (dispatch) => {
 };
 
 export const loadValues = () => (dispatch, getState) => {
-    return fetchValues(getState().variables).then(
+    return fetchValues(getState().selected).then(
         res => {
             dispatch(res)
         }

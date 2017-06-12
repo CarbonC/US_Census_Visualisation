@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         case 'FETCHVARIABLES':
             return {...state, variables: action.variables};
         case 'CHANGEVARIABLE':
-            return {...state, variables: action.variables};
+            return {...state, selected: action.selected};
         case 'FETCHVALUES':
             return {...state, values: action.values};
         default:
