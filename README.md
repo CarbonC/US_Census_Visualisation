@@ -1,6 +1,6 @@
 # US_Census_Visualisation
 
-Technical test Kamet Ventures
+Technical test
 
 Goal of this exercise is to create a small web application that visualizes database data.
 Application should allow to select a column (amongst demographic data), then display, for each different value in this column, number of lines with this value, and "age" value average. Values must be sorted by decreasing order. One can display only 100 first values.
